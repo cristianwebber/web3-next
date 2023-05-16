@@ -7,7 +7,7 @@ import { ethers } from "ethers"
 export default function Lottery() {
     const { Moralis, isWeb3Enabled, chainId: chainIdHex } = useMoralis()
     const chainId = parseInt(chainIdHex)
-    const raffleAddress = chainId in contractAddresses ? contractAddresses[chainId][0] : null
+    const lotteryAddress = chainId in contractAddresses ? contractAddresses[chainId][0] : null
 
     const [entranceFee, setEntranceFee] = useState("0")
     const [numberOfPlayers, setNumberOfPlayers] = useState("0")
@@ -16,14 +16,14 @@ export default function Lottery() {
     const dispatch = useNotification()
 
     const {
-        runContractFunction: enterRaffle,
+        runContractFunction: enterLottery,
         data: enterTxResponse,
         isLoading,
         isFetching,
     } = useWeb3Contract({
         abi: abi,
-        contractAddress: raffleAddress,
-        functionName: "enterRaffle",
+        contractAddress: lotteryAddress,
+        functionName: "enterLottery",
         msgValue: entranceFee,
         params: {},
     })
@@ -32,21 +32,21 @@ export default function Lottery() {
 
     const { runContractFunction: getEntranceFee } = useWeb3Contract({
         abi: abi,
-        contractAddress: raffleAddress,
+        contractAddress: lotteryAddress,
         functionName: "getEntranceFee",
         params: {},
     })
 
     const { runContractFunction: getPlayersNumber } = useWeb3Contract({
         abi: abi,
-        contractAddress: raffleAddress,
+        contractAddress: lotteryAddress,
         functionName: "getNumberOfPlayers",
         params: {},
     })
 
     const { runContractFunction: getRecentWinner } = useWeb3Contract({
         abi: abi,
-        contractAddress: raffleAddress,
+        contractAddress: lotteryAddress,
         functionName: "getRecentWinner",
         params: {},
     })
@@ -89,12 +89,12 @@ export default function Lottery() {
     return (
         <div className="p-5">
             <h1 className="py-4 px-4 font-bold text-3xl">Lottery</h1>
-            {raffleAddress ? (
+            {lotteryAddress ? (
                 <>
                     <button
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-auto"
                         onClick={async () =>
-                            await enterRaffle({
+                            await enterLottery({
                                 onSuccess: handleSuccess,
                                 onError: (error) => console.log(error),
                             })
@@ -104,7 +104,7 @@ export default function Lottery() {
                         {isLoading || isFetching ? (
                             <div className="animate-spin spinner-border h-8 w-8 border-b-2 rounded-full"></div>
                         ) : (
-                            "Enter Raffle"
+                            "Enter Lottery"
                         )}
                     </button>
                     <div>Entrance Fee: {ethers.utils.formatUnits(entranceFee, "ether")} ETH</div>
