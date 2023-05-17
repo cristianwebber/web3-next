@@ -114,6 +114,42 @@ export default function Lottery() {
             ) : (
                 <div>Please connect to a supported chain </div>
             )}
+            <div>Rules:</div>
+            <ul>
+                <li>- Maximum of 5 players</li>
+                <li>- One player can join multiple times</li>
+                <li>- Winner takes all</li>
+            </ul>
+            <div>When the 5th player buy the ticket, Chainlink Automation will trigger and a winner will be choose though Chainlink VRF.</div>
+            <ul>
+                <li><a href="https://docs.chain.link/chainlink-automation/introduction" class="mr-4 hover:underline md:mr-6">Chainlink automation</a></li>
+                <li><a href="https://docs.chain.link/vrf/v2/introduction" class="mr-4 hover:underline md:mr-6">Chainlink VRF (Verifiable Random Function)</a></li>
+                {/* TODO: Change this hardcoded later */}
+                <li><a href="https://sepolia.etherscan.io/address/0xc7eb7fb35b9d6719161da5277c10c5be801a59a3" class="mr-4 hover:underline md:mr-6">Contract in Etherscan</a></li>
+                <li><a href="https://github.com/cristianwebber/web3-next" class="mr-4 hover:underline md:mr-6">Frontend Repository</a></li>
+                <li><a href="https://github.com/cristianwebber/web3-python" class="mr-4 hover:underline md:mr-6">Backend Repository</a></li>
+            </ul>
+            <footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
+                <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+                    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">HTML and CSS are my passion 😅
+                    </span>
+                    <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+                        <li>
+                            <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
+                        </li>
+                        <li>
+                            <a href="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#" class="mr-4 hover:underline md:mr-6">Licensing</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </footer>
+
         </div>
     )
 }
